@@ -1,0 +1,79 @@
+package com.srilankagem.gembackend.gem.models;
+
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "gemstones")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class GemStone {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String gemCode;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GemType type;
+
+    @Column(nullable = false)
+    private String color;
+
+    @Column(nullable = false)
+    private Double caratWeight;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GemOrigin origin;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GemTreatment treatment;
+
+    @Column(nullable = false)
+    private BigDecimal pricePerCarat; // we use bigDecimal to avoid rounding issues with double
+    //bigDecimal gives precision to our decimal values
+
+    @OneToOne(mappedBy = "gemStone", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Certificate certificate;
+
+    @Column(nullable = false)
+    private Integer stockQuantity;
+
+    @Column(length = 1000)
+    private String description;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean certified = false;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean active = true;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    private void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+}
