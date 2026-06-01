@@ -5,18 +5,13 @@ import com.srilankagem.gembackend.common.exception.DuplicateResourceException;
 import com.srilankagem.gembackend.common.exception.ResourceNotFoundException;
 import com.srilankagem.gembackend.gem.dto.CertificateRequest;
 import com.srilankagem.gembackend.gem.dto.CertificateResponse;
-import com.srilankagem.gembackend.gem.dto.GemStoneResponse;
 import com.srilankagem.gembackend.gem.models.Certificate;
 import com.srilankagem.gembackend.gem.models.GemStone;
 import com.srilankagem.gembackend.gem.repository.CertificateRepository;
 import com.srilankagem.gembackend.gem.repository.GemStoneRepository;
-import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.DuplicateFormatFlagsException;
 
 @Service
 

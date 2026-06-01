@@ -52,8 +52,8 @@ public class Trade {
     private  LocalDateTime updatedAt;
 
 
-    public void addItem (TradeItem item) {
-        items.remove(item);
+    public void addItem(TradeItem item) {
+        items.add(item);
     }
 
     @PrePersist

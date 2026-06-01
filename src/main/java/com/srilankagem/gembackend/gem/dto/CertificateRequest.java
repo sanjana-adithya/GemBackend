@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 
@@ -23,7 +23,7 @@ public class CertificateRequest {
     @NotBlank(message = "Issued by is required")
     private String issuedBy;
 
-    @NotBlank(message = "Issued date is required")
+    @NotNull(message = "Issued date is required")
     private LocalDate issueDate;
 
     @NotNull(message = "Expiry date is required")
